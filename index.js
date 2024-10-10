@@ -1,4 +1,4 @@
-const hummus = require('hummus');
+const muhammara = require('muhammara');
 const memoryStreams = require('memory-streams');
 
 /**
@@ -12,16 +12,16 @@ exports.merge = async buffers => {
   const [first] = buffers;
 
   const outStream = new memoryStreams.WritableStream();
-  const firstPdfStream = new hummus.PDFRStreamForBuffer(first);
+  const firstPdfStream = new muhammara.PDFRStreamForBuffer(first);
 
-  const pdfWriter = hummus.createWriterToModify(
+  const pdfWriter = muhammara.createWriterToModify(
     firstPdfStream,
-    new hummus.PDFStreamForResponse(outStream),
+    new muhammara.PDFStreamForResponse(outStream),
   );
 
   buffers.shift();
   buffers.forEach(buffer => {
-    const newPdfStream = new hummus.PDFRStreamForBuffer(buffer);
+    const newPdfStream = new muhammara.PDFRStreamForBuffer(buffer);
     pdfWriter.appendPDFPagesFromPDF(newPdfStream);
   });
 
